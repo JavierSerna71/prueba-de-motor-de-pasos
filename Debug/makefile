@@ -9,8 +9,9 @@ RM := rm -rf
 
 # All of the sources participating in the build are defined here
 -include sources.mk
--include Startup/subdir.mk
--include Src/subdir.mk
+-include Drivers/STM32F4xx_HAL_Driver/Src/subdir.mk
+-include Core/Startup/subdir.mk
+-include Core/Src/subdir.mk
 -include objects.mk
 
 ifneq ($(MAKECMDGOALS),clean)
@@ -33,34 +34,34 @@ $(wildcard ../makefile.init) \
 $(wildcard ../makefile.targets) \
 
 
-BUILD_ARTIFACT_NAME := controladora de psaos motores
+BUILD_ARTIFACT_NAME := Drive motores de paso
 BUILD_ARTIFACT_EXTENSION := elf
 BUILD_ARTIFACT_PREFIX :=
 BUILD_ARTIFACT := $(BUILD_ARTIFACT_PREFIX)$(BUILD_ARTIFACT_NAME)$(if $(BUILD_ARTIFACT_EXTENSION),.$(BUILD_ARTIFACT_EXTENSION),)
 
 # Add inputs and outputs from these tool invocations to the build variables 
 EXECUTABLES += \
-controladora\ de\ psaos\ motores.elf \
+Drive\ motores\ de\ paso.elf \
 
 MAP_FILES += \
-controladora\ de\ psaos\ motores.map \
+Drive\ motores\ de\ paso.map \
 
 SIZE_OUTPUT += \
 default.size.stdout \
 
 OBJDUMP_LIST += \
-controladora\ de\ psaos\ motores.list \
+Drive\ motores\ de\ paso.list \
 
 
 # All Target
 all: main-build
 
 # Main-build Target
-main-build: controladora\ de\ psaos\ motores.elf secondary-outputs
+main-build: Drive\ motores\ de\ paso.elf secondary-outputs
 
 # Tool invocations
-controladora\ de\ psaos\ motores.elf controladora\ de\ psaos\ motores.map: $(OBJS) $(USER_OBJS) C:\Users\fran-\STM32CubeIDE\workspace_2.0.0\controladora\ de\ psaos\ motores\STM32F401RCTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "controladora de psaos motores.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\fran-\STM32CubeIDE\workspace_2.0.0\controladora de psaos motores\STM32F401RCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="controladora de psaos motores.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Drive\ motores\ de\ paso.elf Drive\ motores\ de\ paso.map: $(OBJS) $(USER_OBJS) /home/serna/STM32CubeIDE/workspace_1.19.0/Drive\ motores\ de\ paso/STM32F401RCTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "Drive motores de paso.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"/home/serna/STM32CubeIDE/workspace_1.19.0/Drive motores de paso/STM32F401RCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Drive motores de paso.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
@@ -69,14 +70,14 @@ default.size.stdout: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
 	@echo 'Finished building: $@'
 	@echo ' '
 
-controladora\ de\ psaos\ motores.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "controladora de psaos motores.list"
+Drive\ motores\ de\ paso.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "Drive motores de paso.list"
 	@echo 'Finished building: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) controladora\ de\ psaos\ motores.elf controladora\ de\ psaos\ motores.list controladora\ de\ psaos\ motores.map controladora\\ de\\ psaos\\ motores.elf default.size.stdout
+	-$(RM) Drive\ motores\ de\ paso.elf Drive\ motores\ de\ paso.list Drive\ motores\ de\ paso.map Drive\\ motores\\ de\\ paso.elf default.size.stdout
 	-@echo ' '
 
 secondary-outputs: $(SIZE_OUTPUT) $(OBJDUMP_LIST)
