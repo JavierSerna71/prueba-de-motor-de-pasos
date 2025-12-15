@@ -60,8 +60,8 @@ all: main-build
 main-build: Drive\ motores\ de\ paso.elf secondary-outputs
 
 # Tool invocations
-Drive\ motores\ de\ paso.elf Drive\ motores\ de\ paso.map: $(OBJS) $(USER_OBJS) C:\Users\fran-\Downloads\prueba-de-motor-de-pasos-main\prueba-de-motor-de-pasos-main\STM32F401RCTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "Drive motores de paso.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\fran-\Downloads\prueba-de-motor-de-pasos-main\prueba-de-motor-de-pasos-main\STM32F401RCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Drive motores de paso.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Drive\ motores\ de\ paso.elf Drive\ motores\ de\ paso.map: $(OBJS) $(USER_OBJS) /home/serna/c-code/prueba-de-motor-de-pasos/STM32F401RCTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "Drive motores de paso.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"/home/serna/c-code/prueba-de-motor-de-pasos/STM32F401RCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Drive motores de paso.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
